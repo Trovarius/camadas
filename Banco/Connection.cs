@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Data.Common;
 
-namespace Banco
+namespace Reserva.Banco
 {
     public class Connection
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelos
+namespace Reserva.Modelos.Interface
 {
     public interface IRepository<T>
     {

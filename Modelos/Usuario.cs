@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Reserva.Modelos.DAO;
 
-namespace Modelos
+namespace Reserva.Modelos
 {
     public class Usuario : UsuarioDAO
     {
