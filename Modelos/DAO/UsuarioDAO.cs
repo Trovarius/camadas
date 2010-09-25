@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Reserva.Banco;
 using Reserva.Modelos.Interface;
+using System.Data.SqlClient;
 
 namespace Reserva.Modelos.DAO
 {
@@ -12,9 +13,14 @@ namespace Reserva.Modelos.DAO
         {
             String query = "INSERT INTO usuario(nm_nome, nm_login, nm_senha, id_tp_usuario) VALUES (@nm_nome, @nm_login, @nm_senha, @id_tp_usuario)";
 
-            BD.ExecuteNonQuery(query);
+            BD.ExecuteNonQuery(query, new SqlParameter[]{
+              new SqlParameter("@nm_nome", user.Nome),
+                new SqlParameter("@nm_login", user.Login),
+                new SqlParameter("@nm_senha", user.Senha),
+                new SqlParameter("@id_tp_usuario", user.TipoUsuario)
+            });
 
-            return new Usuario();
+            return user;
         }
 
         public Usuario Atualizar(Usuario user)

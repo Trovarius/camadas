@@ -16,35 +16,38 @@ namespace Reserva.Banco
             get { return Connection.GetInstance(); }
         }
 
-        public static SqlDataReader Reader(string query)
+        public static SqlDataReader Reader(string query, SqlParameter[] paramns = null)
         {
             SqlDataReader reader = null;
             Conexao.Execute(delegate(SqlCommand cmd) {
                 cmd.CommandText = query;
+                if (!Convert.Equals(paramns, null)) cmd.Parameters.AddRange(paramns);
                 reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             });
 
             return reader;
         }
 
-        public static DataTable DataTable(string query)
+        public static DataTable DataTable(string query, SqlParameter[] paramns = null)
         {
             DataTable dt = new DataTable();
 
             Conexao.Execute(delegate(SqlDataAdapter adpter) {
                 adpter.SelectCommand.CommandText = query;
+                if (!Convert.Equals(paramns, null)) adpter.SelectCommand.Parameters.AddRange(paramns);
                 adpter.Fill(dt);
             });
             
            return dt;
         }
 
-        public static Int32 ExecuteNonQuery(string query)
+        public static Int32 ExecuteNonQuery(string query, SqlParameter[] paramns = null)
         {
             Int32 result = 0;
             Conexao.Execute(delegate(SqlCommand cmd)
             {
                 cmd.CommandText = query;
+                if (!Convert.Equals(paramns, null)) cmd.Parameters.AddRange(paramns);
                 result = cmd.ExecuteNonQuery();
                 cmd.Transaction.Commit();
             });
