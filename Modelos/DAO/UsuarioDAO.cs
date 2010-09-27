@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Reserva.Modelos.DAO
 {
-    internal class UsuarioDAO : IRepository<Usuario>
+    public class UsuarioDAO : IRepository<Usuario>
     {
         public Usuario Inserir(Usuario user)
         {
@@ -22,6 +22,10 @@ namespace Reserva.Modelos.DAO
 
             return user;
         }
+
+        public IList<Usuario> Buscar() { throw new Exception(); }
+
+        public IList<Usuario> Buscar(Func<Usuario, Boolean> expression) { throw new Exception(); }
 
         public Usuario Atualizar(Usuario user)
         {
