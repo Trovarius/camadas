@@ -9,7 +9,13 @@ namespace Reserva.Modelos
     public class Usuario : UsuarioDAO
     {
         private String nm_nome, nm_login, nm_senha;
-        private Int32 id_tp_usuario;
+        private Int32 id_tp_usuario, id_usuario;
+
+        public Int32 ID
+        {
+            get { return id_usuario; }
+            set { id_usuario = value; }
+        }
 
         public Int32 TipoUsuario
         {

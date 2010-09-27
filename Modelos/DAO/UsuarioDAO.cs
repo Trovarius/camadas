@@ -29,12 +29,26 @@ namespace Reserva.Modelos.DAO
 
         public Usuario Atualizar(Usuario user)
         {
-            throw new ExecptionDAO();
+            String query = "UPDATE usuario SET nm_nome = @nm_nome, nm_login = @nm_login, nm_senha = @nm_senha, id_tp_usuario = @id_tp_usuario WHERE id_usuario = @id_usuario";
+
+            BD.ExecuteNonQuery(query, new SqlParameter[]{
+              new SqlParameter("@nm_nome", user.Nome),
+                new SqlParameter("@nm_login", user.Login),
+                new SqlParameter("@nm_senha", user.Senha),
+                new SqlParameter("@id_tp_usuario", user.TipoUsuario),
+                new SqlParameter("@id_usuario", user.ID)
+            });
+
+            return user;
         }
 
         public void Deletar(Usuario user)
         {
-            throw new ExecptionDAO();
+            String query = "DELETE FROM usuario WHERE id_usuario = @id_usuario";
+
+            BD.ExecuteNonQuery(query, new SqlParameter[]{
+                new SqlParameter("@id_usuario", user.ID)
+            });
         }
     }
 }
